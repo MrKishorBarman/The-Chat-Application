@@ -85,7 +85,7 @@ export const AuthProvider = ({ children }) => {
 
     return (
         <AuthContext.Provider value={{ user, handleLogin, handleLogout, handleRegister }}>
-            {loading ? <p style={{fontSize: '34px', marginLeft: '10px'}}>loading...</p> : children}
+            {loading ? <p style={{fontSize: '70px', marginLeft: '55px', marginTop: '35px'}}>Loading...</p> : children}
         </AuthContext.Provider>
     )
 

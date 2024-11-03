@@ -88,37 +88,48 @@ const Room = () => {
         // setMessages(prevState => messages.filter(message => message.$id !== message_id))
     }
 
+    const options = {
+        day: '2-digit',      
+        month: '2-digit',    
+        year: 'numeric',      
+        hour: '2-digit',      
+        minute: '2-digit',    
+        hour12: true          
+    }
+
     return (
         <main className='container'>
-
-            <Header />
+            <div className="sticky1">
+                <Header />
+            </div>
 
             <div className='room--container'>
 
-                <form
-                    onSubmit={handleSubmit}
-                    id="message--form">
-                    <div>
-                        <textarea
-                            required
-                            maxLength='250'
-                            placeholder='Say something...'
-                            onChange={(e) => { setMessageBody(e.target.value) }}
-                            value={messageBody}
-                        ></textarea>
+                <div className="sticky2" >
+                    <form
+                        onSubmit={handleSubmit}
+                        id="message--form">
+                        <div>
+                            <textarea
+                                required
+                                maxLength='250'
+                                placeholder='Say something...'
+                                onChange={(e) => { setMessageBody(e.target.value) }}
+                                value={messageBody}
+                            ></textarea>
 
-                    </div>
+                        </div>
 
-                    <div className='send-btn--wrapper'>
-                        <input
-                            className='btn btn--secondary'
-                            type="submit"
-                            value='Send'
-                        />
-                    </div>
+                        <div className='send-btn--wrapper'>
+                            <input
+                                className='btn btn--secondary'
+                                type="submit"
+                                value='Send'
+                            />
+                        </div>
 
-                </form>
-
+                    </form>
+                </div>
 
                 <div>
                     {messages.map(message => (
@@ -132,7 +143,7 @@ const Room = () => {
                                         'Anonymous user'
                                     )}
 
-                                    <small className="message-timestamp"> {new Date(message.$createdAt).toLocaleString()}</small>
+                                    <small className="message-timestamp">{new Date(message.$createdAt).toLocaleString('en-GB', options)}</small>
                                 </p>
 
                                 {message.$permissions.includes(`delete("user:${user.$id}")`) && (
